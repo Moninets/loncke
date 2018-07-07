@@ -11,41 +11,77 @@
 ?>
 <!doctype html>
 <html class="no-js" <?php language_attributes(); ?> >
-	<head>
-		<meta charset="<?php bloginfo( 'charset' ); ?>" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<?php wp_head(); ?>
-	</head>
-	<body <?php body_class(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <?php wp_head(); ?>
+</head>
+<body <?php body_class(); ?>>
 
-	<?php if ( get_theme_mod( 'wpt_mobile_menu_layout' ) === 'offcanvas' ) : ?>
-		<?php get_template_part( 'template-parts/mobile-off-canvas' ); ?>
-	<?php endif; ?>
+<?php if (get_theme_mod('wpt_mobile_menu_layout') === 'offcanvas') : ?>
+    <?php get_template_part('template-parts/mobile-off-canvas'); ?>
+<?php endif; ?>
 
 
-	<header class="site-header" role="banner">
-		<div class="site-title-bar title-bar" <?php foundationpress_title_bar_responsive_toggle(); ?>>
-			<div class="title-bar-left">
-				<button aria-label="<?php _e( 'Main Menu', 'foundationpress' ); ?>" class="menu-icon" type="button" data-toggle="<?php foundationpress_mobile_menu_id(); ?>"></button>
-				<span class="site-mobile-title title-bar-title">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-				</span>
-			</div>
-		</div>
+<header class="lo-header" role="banner">
+    <div class="grid-container full">
+        <div class="grid-x align-middle align-justify">
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="lo-header__logo">
+                <img src="<?php header_image(); ?>" alt="Logo">
+            </a>
+            <a href="#" data-toggle="offCanvasNestedOverlap">
+                <div class="lo-hamburger">
+                    <span class="lo-hamburger__inner lo-hamburger__inner--first"></span>
+                    <span class="lo-hamburger__inner lo-hamburger__inner--middle"></span>
+                    <span class="lo-hamburger__inner lo-hamburger__inner--last"></span>
+                </div>
 
-		<nav class="site-navigation top-bar" role="navigation">
-			<div class="top-bar-left">
-				<div class="site-desktop-title top-bar-title">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
-				</div>
-			</div>
-			<div class="top-bar-right">
-				<?php foundationpress_top_bar_r(); ?>
+            </a>
+        </div>
+        </button>
+    </div>
 
-				<?php if ( ! get_theme_mod( 'wpt_mobile_menu_layout' ) || get_theme_mod( 'wpt_mobile_menu_layout' ) === 'topbar' ) : ?>
-					<?php get_template_part( 'template-parts/mobile-top-bar' ); ?>
-				<?php endif; ?>
-			</div>
-		</nav>
+</header>
 
-	</header>
+<div class="off-canvas position-right flex-container align-middle is-closed" data-transition="overlap"
+     id="offCanvasNestedOverlap"
+     data-off-canvas>
+    <div class="callout lo-callout">
+        <?php foundationpress_main_menu(); ?>
+        <a class="lo-callout__link" href="">034535353</a>
+        <?php if (have_rows('socials', 'options')): ?>
+            <ul class="lo-socials__list">
+                <?php while (have_rows('socials', 'options')) : the_row(); ?>
+                    <li class="lo-socials__item">
+                        <a href="<?php the_sub_field('socials_link'); ?>" class="lo-socials__link">
+                            <i class="fa <?php the_sub_field('socials_icon', 'options'); ?>"></i>
+                        </a>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+</div>
+
+<div class="lo-menu__bottom flex-container  align-justify">
+    <div class="lo-menu--left lo-menu ">
+        <i class="lo-menu__icon fa fa-share-alt"></i>
+        <?php if (have_rows('socials', 'options')): ?>
+            <ul class="lo-menu__socials">
+                <?php while (have_rows('socials', 'options')) : the_row(); ?>
+                    <li class="lo-menu__item">
+                        <a href="<?php the_sub_field('socials_link'); ?>" class="lo-menu__link">
+                            <i class="fa <?php the_sub_field('socials_icon', 'options'); ?>"></i>
+                        </a>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        <?php endif; ?>
+    </div>
+    <div class="lo-menu__right">
+        <i class=" lo-phone fa fa-phone"></i>
+        <a href="<?php the_field('phone_link', 'options'); ?>"><?php the_field('phone_text', 'options'); ?> </a>
+    </div>
+</div>
+
+

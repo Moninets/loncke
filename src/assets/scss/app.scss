@@ -63,6 +63,7 @@
 @import "global/colors";
 @import "global/wp-admin";
 @import "global/wp-overrides";
+@import "global/global";
 
 // Modules
 @import "modules/navigation";
@@ -80,3 +81,30 @@
 // Templates
 @import "templates/front";
 @import "templates/kitchen-sink";
+@import "templates/home";
+
+/* BEGAN BANNER */
+
+.lo-banner {
+  -webkit-background-size: cover;
+  background-size: cover;
+  position: relative;
+  display: flex;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.8;
+    background-color: #000;
+  }
+  &__logo {
+    max-width: 700px;
+    width: 100%;
+    position: relative;
+  }
+}
+
+/* AND BANNER */

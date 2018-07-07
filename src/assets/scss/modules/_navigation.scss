@@ -19,87 +19,124 @@
   display: none; // prevents repaint caused by JS hiding menu onload
 }
 
-.off-canvas {
-  > ul.menu {
-    height: 100vh;
-    padding: 1rem;
+.lo-header {
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  padding: 20px 40px;
+  &__logo {
+    img {
+      width: 100px;
+    }
+  }
+  .lo-hamburger {
+    display: block;
+    &__inner {
+      width: 30px;
+      height: 2px;
+      background-color: #fff;
+      display: block;
+      transition: .15s ease;
+    }
+    &__inner--middle {
+      width: 15px;
+      margin: 5px auto 5px;
+    }
+  }
+}
 
+.off-canvas.is-transition-overlap.is-open {
+  background-color: #fff;
+  box-shadow: none;
+  .callout, .lo-callout {
+    border: none;
+    padding: 0;
+    &__link {
+      padding-left: 15px;
+      color: $gold-color;
+    }
+  }
+  .main-menu {
+    flex-wrap: nowrap;
+    flex-direction: column;
     a {
-      color: $white;
-      font-weight: 600;
-      font-size: rem-calc(15);
+      padding-left: 15px;
+      color: $gold-color;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .is-active > a {
+      color: $black-color;
     }
   }
 
-  .menu .active > a { background-color: #ccc; }
-
 }
 
-.title-bar-title {
-  a {
-    font-size: 1rem;
-    color: #B9B9B9;
-  }
-}
-
-.mobile-menu,
-.mobile-off-canvas-menu {
-
-  .menu .is-active > a {
-    background-color: lighten($dark-nav-color, 5%);
-  }
-}
-
-// Tablet and desktop menu
-
-.top-bar {
-
-  .top-bar-title a {
-    font-size: 1rem;
-    color: #B9B9B9;
-    padding-left: 1rem;
-    line-height: 1.8;
-  }
-
-  .menu a {
-    color: #e6e6e6;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-weight: bold;
-    font-size: 0.8rem;
-    line-height: 1;
-
-    &:hover:not(.button) {
-      background-color: #42525D;
+.lo-socials__list {
+  border-top: 1px solid #af9656;
+  list-style-type: none;
+  margin: 0;
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 40px;
+  padding-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .lo-socials__item {
+    display: inline-block;
+    + .lo-socials__item {
+      padding-left: 35px;
     }
   }
+  .lo-socials__link {
+    i {
+      font-size: 24px;
+      color: $gold-color;
+      font-weight: 700;
 
-  .menu .active > a { background-color: #ccc; }
-
-  .menu>li:not(.menu-text)>a { padding: 1rem; }
-  .menu li:not(:last-child) { border-right: 1px solid #4e4e4e; }
-
-  .dropdown.menu .submenu { border: 0; }
-  .dropdown.menu .has-submenu.is-down-arrow a { padding-right: 1rem; }
-  .dropdown.menu .has-submenu.is-down-arrow > a::after { border: 0; }
-  .dropdown.menu:first-child > li.is-dropdown-submenu-parent > a::after { display: none; }
-}
-
-.site-navigation {
-  @include breakpoint(small only) {
-    padding: 0; // prevents container visibility on small screens
+    }
   }
 }
 
-// WP post navigation
-.post-navigation {
-  @include clearfix;
-}
-
-.nav-previous {
-  float:left;
-}
-
-.nav-next {
-  float:right;
+.lo-menu__bottom {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  z-index: 100;
+  .lo-menu {
+    &:hover {
+      .lo-menu__socials {
+        display:inline-block;
+      }
+    }
+    &__icon {
+      color: $gold-color;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    &__socials {
+      list-style-type: none;
+      margin: 0;
+      display: inline-block;
+      display: none;
+    }
+    &__item {
+      display: inline-block;
+    }
+    &__link {
+      i {
+        color: $gold-color;
+        font-weight: 700;
+      }
+    }
+  }
+  .lo-menu__right {
+    .lo-phone {
+      transform: rotate(0deg);
+      color: $gold-color;
+    }
+  }
 }

@@ -24,6 +24,7 @@ if ( ! function_exists( 'foundationpress_theme_support' ) ) :
 
 		// Add menu support
 		add_theme_support( 'menus' );
+        add_theme_support( 'custom-header' );
 
 		// Let WordPress manage the document title
 		add_theme_support( 'title-tag' );
