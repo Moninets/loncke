@@ -59,5 +59,88 @@ get_header(); ?>
 
     <!-- AND CONCEPTION -->
 
+
+    <!-- BEGAN REALISATIONS -->
+
+    <section class=" lo-realisations">
+        <div class="grid-container">
+            <h3 class="lo-realisations__title">
+                <?php the_field('realisations_title'); ?>
+            </h3>
+            <?php
+            $args = array(
+                'post_type' => 'realisations',
+                'posts_per_page' => 2,
+                'order' => 'DESC',
+            );
+            $posts = new WP_Query($args);
+            ?>
+
+            <?php if ($posts->have_posts()): while ($posts->have_posts()) : $posts->the_post(); ?>
+                <article class="lo-realisations__post">
+                    <?php $images = get_field('gallery'); ?>
+                    <?php if ($images): ?>
+                        <div class="grid-x grid-margin-x">
+                            <?php $i = 1; ?>
+                            <?php foreach ($images as $image): ?>
+                                <div class="cell medium-6 large-3">
+                                    <a href="<?php echo $image['url']; ?>">
+                                        <img src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>">
+                                    </a>
+                                </div>
+                            <?php
+                                $i++;
+                                if($i === 5) {break;}
+                            ?>
+                            <?php endforeach; ?>
+                            <div class="cell">
+                                <h5 class="lo-article__title">
+                                    <?php the_field('pre_title', 'options'); ?>
+                                    <?php the_title(); ?>
+                                </h5>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </article>
+            <?php endwhile; endif;
+            wp_reset_postdata(); ?>
+
+
+            <a href="<?php the_field('realisations_link'); ?>" class="realisations_link">
+                <?php the_field('realisations_text'); ?>
+                <i class="fa fa-long-arrow-right"></i>
+            </a>
+        </div>
+
+    </section>
+
+    <!-- AND REALISATIONS -->
+
+    <!-- BEGAN CONTACT-->
+
+    <section class="lo-contact">
+        <div class="grid-container">
+            <div class="lo-contact__title">
+                <?php the_field('contact_title'); ?>
+            </div>
+            <div class="lo-contact__map">
+                <?php
+                $location = get_field('map');
+                if (!empty($location)):
+                    ?>
+                    <div id="map" class="acf-map">
+                        <div class="marker" data-lat="<?php echo $location['lat']; ?>"
+                             data-lng="<?php echo $location['lng']; ?>">
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- AND CONTACT -->
+
+
 <?php get_footer();
 

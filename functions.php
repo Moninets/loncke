@@ -55,9 +55,30 @@ require_once( 'library/responsive-images.php' );
 // require_once( 'library/class-foundationpress-protocol-relative-theme-assets.php' );
 
 /* ADD OPTIONS PAGE */
+function my_acf_init() {
+
+    acf_update_setting('google_api_key', 'AIzaSyCO_3F0KHcJZGW6IoQj7hbBdbGxGtzlZ54');
+}
+
+add_action('acf/init', 'my_acf_init');
 
 if (function_exists('acf_add_options_page')) {
 
     acf_add_options_page();
 
 }
+
+add_theme_support('post-thumbnails');
+
+
+
+/* ADD GOOGLE MAP */
+
+function so_acf_init()
+{
+
+    acf_update_setting('google_api_key', 'AIzaSyCO_3F0KHcJZGW6IoQj7hbBdbGxGtzlZ54');
+}
+
+add_action('acf/init', 'so_acf_init');
+
