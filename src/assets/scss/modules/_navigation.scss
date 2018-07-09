@@ -43,33 +43,60 @@
       margin: 5px auto 5px;
     }
   }
+  @include breakpoint(768px down){
+    padding: 0 20px;
+    background-color: $dark-grey;
+  }
 }
 
-.off-canvas.is-transition-overlap.is-open {
+.off-canvas {
   background-color: #fff;
   box-shadow: none;
-  .callout, .lo-callout {
+  .is-transition-overlap {
+    z-index: 40;
+  }
+  .lo-callout {
     border: none;
-    padding: 0;
+    padding-left: 40px;
     &__link {
-      padding-left: 15px;
       color: $gold-color;
+      padding-left: 15px;
+      @include  breakpoint (768px down) {
+        padding-left: 35px;
+      }
+    }
+    @include  breakpoint (768px down) {
+      padding: 0;
+      margin: 0 auto;
     }
   }
   .main-menu {
     flex-wrap: nowrap;
     flex-direction: column;
+    .menu-item {
+      &:focus {
+        outline: none;
+      }
+      @include breakpoint (768px down) {
+        text-align: center;
+      }
+    }
     a {
-      padding-left: 15px;
       color: $gold-color;
       text-transform: uppercase;
       font-weight: 700;
+      display: inline-block;
     }
     .is-active > a {
-      color: $black-color;
+      color: $dark-grey;
     }
   }
-
+  &:active {
+    box-shadow: none
+  }
+  @include breakpoint(768px down) {
+    width: 100%;
+  }
 }
 
 .lo-socials__list {
@@ -94,49 +121,79 @@
       font-size: 24px;
       color: $gold-color;
       font-weight: 700;
-
     }
   }
 }
 
 .lo-menu__bottom {
+  padding: 0 30px 20px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   position: fixed;
   bottom: 0;
-  z-index: 100;
+  z-index: 10;
   .lo-menu {
+    &:focus {
+      outline: none;
+    }
     &:hover {
       .lo-menu__socials {
-        display:inline-block;
+        padding-left: 10px;
+        display: inline-block;
+      }
+      .lo-menu__link {
+        font-size: 16px;
+        transition: .3s;
       }
     }
     &__icon {
       color: $gold-color;
       font-weight: 700;
-      cursor: pointer;
+      &:focus {
+        outline: none;
+      }
     }
     &__socials {
       list-style-type: none;
       margin: 0;
       display: inline-block;
-      display: none;
+      padding: 0;
     }
     &__item {
       display: inline-block;
+      + li {
+        padding-left: 10px;
+      }
     }
     &__link {
+      font-size: 0;
       i {
-        color: $gold-color;
+        color: #af935b;
         font-weight: 700;
       }
     }
   }
-  .lo-menu__right {
-    .lo-phone {
-      transform: rotate(0deg);
+  .lo-phone {
+    position: relative;
+    &__icon {
       color: $gold-color;
+
+    }
+    &__link {
+      color: $gold-color;
+      opacity: 0;
+      font-size: 0;
+      padding-left: 0;
+      display: inline-block;
+    }
+    &:hover {
+      .lo-phone__link {
+        padding-left: 5px;
+        font-size: 16px;
+        opacity: 1;
+        transition: .3s;
+      }
     }
   }
 }

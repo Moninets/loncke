@@ -1,23 +1,102 @@
-.footer-container {
-  @include xy-grid-container;
-  border-top: 1px solid $medium-gray;
-  margin-top: rem-calc(60);
-}
+.lo-footer {
+  display: flex;
+  justify-content: center;
+  background-color: $dark-grey;
+  padding-top: 20px;
+  &__logo {
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+  }
 
-.footer-grid {
-  @include xy-grid;
-  padding: rem-calc(30) 0;
+  .footer-menu {
+    border-bottom: 1px solid #5e5e5e;
+    padding: 10px 0 20px;
+    width: 100%;
+    max-width: 1450px;
+    display: flex;
+    justify-content: space-between;
+    .is-active > a {
+      color: $dark-grey;
+    }
+    .menu-item {
+      &:focus {
+        outline: none;
+      }
+      a {
+        text-transform: uppercase;
+        color: #282828;
 
-  section {
-    @include xy-cell();
-    @include breakpoint(large) {
-      @include xy-cell(auto);
+        @include breakpoint (768px down) {
+          display: inline-block;
+        }
+      }
+      @include breakpoint (768px down) {
+        text-align: center;
+      }
+    }
+    @include breakpoint (768px down) {
+      flex-direction: column;
     }
   }
-
-  ul {
+  &__socials--list {
+    padding-top: 30px;
     list-style-type: none;
+    text-align: center;
     margin: 0;
-    padding: 0;
+  }
+  &__socials--item {
+    + li {
+      padding-left: 30px;
+    }
+    display: inline-block;
+  }
+  &__socials--link {
+    color: $wight-color;
+    &:hover {
+      color: $wight-color;
+    }
+  }
+  &__bottom--list {
+    list-style-type: none;
+    text-align: center;
+    .lo-bottom__item {
+      display: inline-block;
+      position: relative;
+      + li {
+        &:before {
+          content: '';
+          display: block;
+          top: 45%;
+          position: absolute;
+          width: 1px;
+          height: 10px;
+          background-color: #fff;
+          @include breakpoint(768px down) {
+            display: none;
+          }
+        }
+      }
+    }
+    .lo-bottom__link {
+      color: $wight-color;
+      padding: 15px;
+      .lo-bottom__image {
+        width: 100px;
+      }
+      svg {
+        path {
+          fill:#fff;
+        }
+        width: 16px;
+        position: relative;
+        top: 3px;
+      }
+    }
+    @include breakpoint (768px down) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
+

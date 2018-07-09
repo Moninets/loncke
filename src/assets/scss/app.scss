@@ -1,6 +1,5 @@
 @charset 'utf-8';
 
-
 @import 'settings';
 @import 'foundation';
 @import 'motion-ui';
@@ -105,6 +104,90 @@
     width: 100%;
     position: relative;
   }
+  &__scroll {
+    padding-bottom: 20px;
+    position: absolute;
+    bottom: 0;
+    z-index: 30;
+    color: $wight-color;
+    font-size: 36px;
+    &:hover {
+      color: $wight-color;
+    }
+    &:focus {
+      color: $wight-color;
+    }
+  }
 }
 
 /* AND BANNER */
+
+/* BEGAN HISTORY */
+
+.lo-history {
+  display: flex;
+  min-height: 100vh;
+  .lo-content__left {
+    padding-right: 20px;
+    .lo-history__title {
+      @include title;
+      color: $gold-color;
+      text-transform: uppercase;
+      strong {
+        color: $dark-grey;
+      }
+    }
+  }
+  .lo-content__right {
+    padding: 0 20px;
+    .lo-history__text {
+      padding-top: 50px;
+      p {
+        color: $dark-grey;
+        @include content;
+        strong {
+          color: $gold-color;
+          font-size: 32px;
+          display: inline-block;
+          padding-top: 10px;
+        }
+        &:first-child {
+          font-size: 32px;
+        }
+      }
+    }
+  }
+}
+
+/* AND HISTORY */
+
+/* BEGAN CONCEPTION */
+
+.lo-conception {
+  background-color: $dark-grey;
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  &__content {
+    p {
+      &:first-child {
+        @include title;
+        color: $gold-color;
+        text-transform: uppercase;
+      }
+      &:last-child {
+        @include content;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: $wight-color;
+      }
+    }
+    strong {
+      @include content;
+      color: $wight-color;
+      font-size: 32px;
+    }
+  }
+}
+
+/* AND CONCEPTION */

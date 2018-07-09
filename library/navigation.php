@@ -48,7 +48,7 @@ if ( ! function_exists( 'foundationpress_top_bar_r' ) ) {
 			array(
 				'container'      => false,
 				'menu_class'     => 'main-menu dropdown menu',
-				'items_wrap'     => '<ul id="%1$s" class="%2$s desktop-menu" data-dropdown-menu>%3$s</ul>',
+				'items_wrap'     => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>',
 				'theme_location' => 'main-menu',
 				'depth'          => 3,
 				'fallback_cb'    => false,
@@ -56,6 +56,28 @@ if ( ! function_exists( 'foundationpress_top_bar_r' ) ) {
 			)
 		);
 	}
+}
+/**
+ *
+ * /**
+ * Desktop navigation - footer menu
+ *
+ * @link http://codex.wordpress.org/Function_Reference/wp_nav_menu
+ */
+if ( ! function_exists( 'foundationpress_footer_menu' ) ) {
+    function foundationpress_footer_menu() {
+        wp_nav_menu(
+            array(
+                'container'      => false,
+                'menu_class'     => 'footer-menu dropdown menu',
+                'items_wrap'     => '<ul id="%1$s" class="%2$s" data-dropdown-menu>%3$s</ul>',
+                'theme_location' => 'main-menu',
+                'depth'          => 3,
+                'fallback_cb'    => false,
+                'walker'         => new Foundationpress_Top_Bar_Walker(),
+            )
+        );
+    }
 }
 /**
  * Mobile navigation - topbar (default) or offcanvas
