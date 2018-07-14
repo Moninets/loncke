@@ -81,10 +81,14 @@
 @import "templates/front";
 @import "templates/kitchen-sink";
 @import "templates/home";
+@import "templates/history";
+@import "templates/history2";
+@import "templates/realisation";
 
 /* BEGAN BANNER */
 
 .lo-banner {
+  padding: 100px 0;
   -webkit-background-size: cover;
   background-size: cover;
   position: relative;
@@ -125,10 +129,20 @@
 /* BEGAN HISTORY */
 
 .lo-history {
+  padding: 100px 0;
   display: flex;
   min-height: 100vh;
+  &__content {
+    padding-right: 50px;
+    position: relative;
+    @include breakpoint(large) {
+      padding-right: 150px;
+    }
+    @include breakpoint(1600px) {
+      padding-right: 0;
+    }
+  }
   .lo-content__left {
-    padding-right: 20px;
     .lo-history__title {
       @include title;
       color: $gold-color;
@@ -139,12 +153,14 @@
     }
   }
   .lo-content__right {
-    padding: 0 20px;
     .lo-history__text {
-      padding-top: 50px;
+      @include breakpoint(xlarge) {
+        padding: 50px 50px 0;
+      }
       p {
         color: $dark-grey;
         @include content;
+        line-height: 1.2;
         strong {
           color: $gold-color;
           font-size: 32px;
@@ -157,6 +173,32 @@
       }
     }
   }
+  &__arrow {
+    position: absolute;
+    right: 25px;
+    top: 66px;
+    @include breakpoint(large) {
+      right: 70px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    @include breakpoint (1600px) {
+      right: -150px;
+    }
+    img {
+      height: 70px;
+      @include breakpoint(large) {
+        height: 200px;
+      }
+      @include breakpoint(1600px) {
+        height: 300px;
+      }
+    }
+
+  }
+  @include breakpoint (768px down) {
+    padding: 50px 0;
+  }
 }
 
 /* AND HISTORY */
@@ -164,10 +206,15 @@
 /* BEGAN CONCEPTION */
 
 .lo-conception {
+  position: relative;
+  padding: 100px 0;
   background-color: $dark-grey;
-  display: flex;
-  min-height: 100vh;
   align-items: center;
+  &__container {
+    @include breakpoint(large only) {
+      padding-right: 100px;
+    }
+  }
   &__content {
     p {
       &:first-child {
@@ -188,18 +235,257 @@
       font-size: 32px;
     }
   }
+  .lo-video__wrapper {
+    position: relative;
+    width: calc(100% - 30px);
+    height: auto;
+    @include breakpoint(large) {
+      width: calc(100% - 120px);
+    }
+    @include breakpoint(1600px) {
+     width: 100%;
+    }
+    .lo-video__overlay {
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+      .lo-video__button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 60px;
+        cursor: pointer;
+      }
+    }
+    .lo-video {
+      width: 100%;
+      display: block;
+    }
+
+    .lo-video__arrow {
+      position: absolute;
+      right: -35px;
+      top: 35px;
+      img {
+        height: 70px;
+        @include breakpoint(large) {
+          height: 200px;
+        }
+        @include breakpoint(1600px) {
+          height: 300px;
+        }
+      }
+      @include breakpoint(large) {
+        right: -100px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      @include breakpoint(1600px) {
+        right: -150px;
+      }
+    }
+  }
+  @include breakpoint(768px down) {
+    padding: 50px 0;
+  }
 }
 
 /* AND CONCEPTION */
 
+/* BEGAN REALISATION */
+
+.lo-realisations {
+  padding: 100px 0;
+  position: relative;
+  &__title {
+    padding-bottom: 15px;
+    p {
+      &:first-child {
+        @include title;
+        color: $gold-color;
+      }
+      &:last-child {
+        @include content;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: $dark-grey;
+      }
+    }
+    strong {
+      @include content;
+      color: $dark-grey;
+      font-size: 32px;
+    }
+  }
+  &__post {
+    padding-bottom: 25px;
+  }
+  &__content {
+    position: relative;
+    .lo-realisations__gallery {
+      text-align: center;
+      margin-bottom: 20px;
+      @include breakpoint(768px down) {
+      }
+      a {
+        background-size: cover;
+        width: 100%;
+        height: 140px;
+        display: block;
+        filter: grayscale(100%);
+        &:hover {
+          filter: grayscale(0);
+          .lo-realisations__image {
+            filter: grayscale(0);
+          }
+        }
+        .lo-realisations__image {
+          filter: grayscale(100%);
+
+        }
+        @include breakpoint (768px down) {
+          top: 40px;
+          height: 240px;
+        }
+      }
+    }
+    @include breakpoint (768px down) {
+      padding-right: 40px;
+    }
+  }
+  @include breakpoint (768px down) {
+    padding: 50px 0;
+  }
+}
+
+.lo-article__title {
+  @include content;
+  color: $dark-grey;
+  padding-top: 15px;
+  font-size: 22px;
+  @include breakpoint (768px down) {
+    font-size: 14px;
+  }
+}
+
+/* AND REALISATION */
 
 /* BEGAN CONTACT */
 
 .lo-contact {
+  background-color: $dark-grey;
+  padding: 100px 0;
+  &__title {
+    padding-bottom: 30px;
+    p {
+      margin: 0;
+      @include content;
+      color: $gold-color;
+      strong {
+        color: $wight-color;
+      }
+    }
+  }
   #map {
     height: 400px;
     width: 100%;
   }
+  .lo-location {
+    text-align: center;
+    padding-top: 100px;
+    &__title {
+      @include title;
+      color: $gold-color;
+      text-transform: uppercase;
+      font-size: 14px;
+      padding-bottom: 25px;
+    }
+    &__list {
+      margin: 0;
+      list-style-type: none;
+      @include breakpoint (768px down) {
+        margin-bottom: 15px;
+      }
+    }
+    &__item {
+      @include content;
+      font-size: 14px;
+      text-transform: uppercase;
+      color: #fff;
+      padding-bottom: 10px;
+      &:first-child {
+        padding: 5px;
+      }
+      p {
+        line-height: 1;
+        margin: 0;
+        &:first-child {
+          line-height: 1.5;
+        }
+      }
+    }
+    &__link {
+      @include content;
+      color: $wight-color;
+    }
+    @include breakpoint(768px down) {
+      padding-top: 50px;
+    }
+  }
+  @include breakpoint(768px down) {
+    padding: 50px 0;
+  }
 }
 
 /* AND CONTACT */
+
+/* BEGAN NOVELS */
+
+.lo-novels {
+  padding: 100px 0;
+  &__post {
+    padding-bottom: 40px;
+  }
+  &__title {
+    @include title;
+    color: $gold-color;
+    strong {
+      @include content;
+      color: $dark-grey;
+      font-size: 32px;
+    }
+  }
+  &__content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    .lo-novels__wrap--image {
+      @include breakpoint(768px down) {
+        margin: 0 15px;
+        padding-bottom: 15px;
+      }
+    }
+    @include breakpoint(medium) {
+      flex-wrap: nowrap;
+    }
+  }
+  &__image {
+    border: 1px solid #282828;
+    max-height: 192px;
+  }
+  &__aroww {
+    img {
+      border: none;
+    }
+  }
+  @include breakpoint(768px down) {
+    padding: 50px 0;
+  }
+}
+
+/* AND NOVELS */

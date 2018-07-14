@@ -7,9 +7,16 @@
  * @package FoundationPress
  * @since FoundationPress 1.0.0
  */
+
+if(is_page_template('page-templates/template-history.php')) {
+    $footer_class = 'lo-footer--white';
+} else {
+    $footer_class = '';
+}
+
 ?>
 
-<footer class="lo-footer">
+<footer class="lo-footer <?php echo $footer_class; ?>">
     <div class="grid-container align-center">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="lo-footer__logo">
             <img src="<?php header_image(); ?>" alt="Logo">

@@ -1,6 +1,4 @@
 .lo-footer {
-  display: flex;
-  justify-content: center;
   background-color: $dark-grey;
   padding-top: 20px;
   &__logo {
@@ -8,7 +6,6 @@
     display: block;
     margin: 0 auto;
   }
-
   .footer-menu {
     border-bottom: 1px solid #5e5e5e;
     padding: 10px 0 20px;
@@ -25,7 +22,7 @@
       }
       a {
         text-transform: uppercase;
-        color: #282828;
+        color: #fff;
 
         @include breakpoint (768px down) {
           display: inline-block;
@@ -52,9 +49,9 @@
     display: inline-block;
   }
   &__socials--link {
-    color: $wight-color;
+    color: #fff;
     &:hover {
-      color: $wight-color;
+      color: #fff;
     }
   }
   &__bottom--list {
@@ -79,7 +76,7 @@
       }
     }
     .lo-bottom__link {
-      color: $wight-color;
+      color: #fff;
       padding: 15px;
       .lo-bottom__image {
         width: 100px;
@@ -96,6 +93,20 @@
     @include breakpoint (768px down) {
       display: flex;
       flex-direction: column;
+      margin: 0;
+    }
+  }
+  &--white {
+    background-color: #fff;
+    a {
+      color: $dark-grey !important;
+    }
+    .footer-menu {
+      .menu-item {
+        a {
+          color: $dark-grey;
+        }
+      }
     }
   }
 }

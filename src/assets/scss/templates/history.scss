@@ -1,0 +1,84 @@
+.lo-history {
+  &--single {
+    padding: 100px 0 !important;
+  }
+  &__container {
+    padding-left: 100px;
+    position: relative;
+    @include breakpoint(768px down) {
+      padding-left: 15px;
+    @include breakpoint(1440px) {
+      padding-left: 15px;
+    }
+      .cell {
+        &:nth-child(2) {
+          order: 3
+        }
+        &:nth-child(3) {
+          order: 2
+        }
+      }
+    }
+  }
+  &__title {
+    @include title;
+    color: $gold-color;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    span {
+      color: $dark-grey;
+    }
+  }
+  &__content2 {
+    color: $dark-grey;
+
+  }
+  p {
+    color: inherit;
+  }
+
+  &__image {
+    width: 100%;
+    filter:grayscale(100%);
+    @include breakpoint (768px down) {
+    margin-bottom: 20px;
+  }
+    @include breakpoint (large) {
+      padding-left: 40px;
+    }
+  }
+  &__post {
+    margin-top: 60px;
+    &--image {
+      margin-bottom: 30px;
+      a {
+        width: 100%;
+        height: 248px;
+        background-size: cover;
+        display: block;
+        filter: grayscale(100%);
+        &:hover {
+          filter: grayscale(0);
+        }
+      }
+    }
+  }
+
+  .lo-arrow {
+    position: absolute;
+    top: 190px;
+    left: 20px;
+    @include breakpoint(768px down) {
+      display: none;
+    }
+    @include breakpoint(1440px) {
+      left: -120px;
+    }
+    img {
+      width: 120px;
+      @include breakpoint(1440px down) {
+        width: 60px;
+      }
+    }
+  }
+}

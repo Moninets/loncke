@@ -133,6 +133,9 @@
   position: fixed;
   bottom: 0;
   z-index: 10;
+  @include breakpoint (768px down) {
+    display: none;
+  }
   .lo-menu {
     &:focus {
       outline: none;

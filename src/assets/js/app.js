@@ -165,7 +165,18 @@ function center_map( map ) {
 // global var
 var map = null;
 
-$(document).ready(function(){
+$(window).on('load', function(){
+
+    $('.lo-video__button').on('click', function() {
+        $(this)
+            .closest('.lo-video__wrapper')
+            .find('.lo-video')[0]
+            .play();
+
+        $(this)
+            .parent()
+            .remove()
+    });
 
     $('.acf-map').each(function(){
 
