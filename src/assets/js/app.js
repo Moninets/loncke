@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import whatInput from 'what-input';
+// import 'fullpage.js'
 
 window.$ = $;
 
@@ -23,7 +24,7 @@ $(document).foundation();
  *  @return	n/a
  */
 
-function new_map( $el ) {
+function new_map($el) {
 
     // var
     var $markers = $el.find('.marker');
@@ -31,14 +32,14 @@ function new_map( $el ) {
 
     // vars
     var args = {
-        zoom		: 16,
-        center		: new google.maps.LatLng(0, 0),
-        mapTypeId	: google.maps.MapTypeId.ROADMAP
+        zoom: 16,
+        center: new google.maps.LatLng(0, 0),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
     };
 
 
     // create map
-    var map = new google.maps.Map( $el[0], args);
+    var map = new google.maps.Map($el[0], args);
 
 
     // add a markers reference
@@ -46,15 +47,16 @@ function new_map( $el ) {
 
 
     // add markers
-    $markers.each(function(){
+    $markers.each(function () {
 
-        add_marker( $(this), map );
+        add_marker($(this), map);
 
     });
 
 
+
     // center map
-    center_map( map );
+    center_map(map);
 
 
     // return
@@ -76,37 +78,51 @@ function new_map( $el ) {
  *  @return	n/a
  */
 
-function add_marker( $marker, map ) {
-
-    // var
-    var latlng = new google.maps.LatLng( $marker.attr('data-lat'), $marker.attr('data-lng') );
-
-    // create marker
-    var marker = new google.maps.Marker({
-        position	: latlng,
-        map			: map
+function addMarkers($markers, map) {
+    $markers.each(function () {
+        const lat = $(this).data('lat');
+        const lng = $(this).data('lng');
+        let marker = new google.maps.Marker({
+            position: { lat: lat, lng: lng },
+            map: map,
+            // icon: {
+                // url: $(this).data('icon') ? $(this).data('icon') : 'https://paradiced.bitbucket.io/dist/assets/img/single-marker.svg',
+                // labelOrigin: new google.maps.Point(40, 30)
+            // },
+        });
     });
-
-    // add to array
-    map.markers.push( marker );
-
-    // if marker contains HTML, add it to an infoWindow
-    if( $marker.html() )
-    {
-        // create info window
-        var infowindow = new google.maps.InfoWindow({
-            content		: $marker.html()
-        });
-
-        // show info window when marker is clicked
-        google.maps.event.addListener(marker, 'click', function() {
-
-            infowindow.open( map, marker );
-
-        });
-    }
-
 }
+
+// function add_marker($marker, map) {
+//
+//     // var
+//     var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng'));
+//
+//     // create marker
+//     var marker = new google.maps.Marker({
+//         position: latlng,
+//         map: map
+//     });
+//
+//     // add to array
+//     map.markers.push(marker);
+//
+//     // if marker contains HTML, add it to an infoWindow
+//     if ($marker.html()) {
+//         // create info window
+//         var infowindow = new google.maps.InfoWindow({
+//             content: $marker.html()
+//         });
+//
+//         // show info window when marker is clicked
+//         google.maps.event.addListener(marker, 'click', function () {
+//
+//             infowindow.open(map, marker);
+//
+//         });
+//     }
+//
+// }
 
 /*
  *  center_map
@@ -121,31 +137,29 @@ function add_marker( $marker, map ) {
  *  @return	n/a
  */
 
-function center_map( map ) {
+function center_map(map) {
 
     // vars
     var bounds = new google.maps.LatLngBounds();
 
     // loop through all markers and create bounds
-    $.each( map.markers, function( i, marker ){
+    $.each(map.markers, function (i, marker) {
 
-        var latlng = new google.maps.LatLng( marker.position.lat(), marker.position.lng() );
+        var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
 
-        bounds.extend( latlng );
+        bounds.extend(latlng);
 
     });
 
     // only 1 marker?
-    if( map.markers.length == 1 )
-    {
+    if (map.markers.length == 1) {
         // set center of map
-        map.setCenter( bounds.getCenter() );
-        map.setZoom( 16 );
+        map.setCenter(bounds.getCenter());
+        map.setZoom(16);
     }
-    else
-    {
+    else {
         // fit to bounds
-        map.fitBounds( bounds );
+        map.fitBounds(bounds);
     }
 
 }
@@ -165,9 +179,9 @@ function center_map( map ) {
 // global var
 var map = null;
 
-$(window).on('load', function(){
+$(window).on('load', function () {
 
-    $('.lo-video__button').on('click', function() {
+    $('.lo-video__button').on('click', function () {
         $(this)
             .closest('.lo-video__wrapper')
             .find('.lo-video')[0]
@@ -178,11 +192,38 @@ $(window).on('load', function(){
             .remove()
     });
 
-    $('.acf-map').each(function(){
+    $('.acf-map').each(function () {
 
         // create map
-        map = new_map( $(this) );
+        map = new_map($(this));
 
     });
 
+
+    $('#fullpage').fullpage({
+        anchors: ['firstPage','secondPage', 'thirdPage', 'fourthPage', 'fifthPage'],
+        navigation: true,
+        autoScrolling: false,
+        // fitToSection: false,
+        // navigationPosition: 'right',
+        normalScrollElements: '#section5',
+        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+        onLeave: function(origin, destination, direction){
+            var leavingSection = this;
+
+            //after leaving section 2
+            if((origin.index) % 2 == 0){
+                $('#fp-nav').addClass('black-nav');
+            } else {
+                $('#fp-nav').removeClass('black-nav');
+            }
+        }
+    });
 });
+
+$(document).ready(function () {
+    $('.lo-hamburger').click(function () {
+        $(this).toggleClass('lo-hamburger__active');
+    });
+});
+

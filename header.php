@@ -15,6 +15,7 @@
     <meta charset="<?php bloginfo('charset'); ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600" rel="stylesheet">
+<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.css"/>-->
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -25,13 +26,10 @@
             <a href="<?php echo esc_url(home_url('/')); ?>" class="lo-header__logo">
                 <img src="<?php header_image(); ?>" alt="Logo">
             </a>
-            <a href="#" data-toggle="offCanvasNestedOverlap">
-                <div class="lo-hamburger">
-                    <span class="lo-hamburger__inner lo-hamburger__inner--first"></span>
-                    <span class="lo-hamburger__inner lo-hamburger__inner--middle"></span>
-                    <span class="lo-hamburger__inner lo-hamburger__inner--last"></span>
-                </div>
-
+            <a class="lo-hamburger" href="#" data-toggle="offCanvasNestedOverlap">
+                <span class="lo-hamburger__inner lo-hamburger__inner--first"></span>
+                <span class="lo-hamburger__inner lo-hamburger__inner--middle"></span>
+                <span class="lo-hamburger__inner lo-hamburger__inner--last"></span>
             </a>
         </div>
         </button>
@@ -78,7 +76,8 @@
     </div>
     <div class="lo-menu__right lo-phone ">
         <i class=" lo-phone__icon fa fa-phone"></i>
-        <a class="lo-phone__link" href="<?php the_field('phone_link', 'options'); ?>"><?php the_field('phone_text', 'options'); ?> </a>
+        <a class="lo-phone__link"
+           href="<?php the_field('phone_link', 'options'); ?>"><?php the_field('phone_text', 'options'); ?> </a>
     </div>
 </div>
 

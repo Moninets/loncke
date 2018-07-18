@@ -84,6 +84,50 @@
 @import "templates/history";
 @import "templates/history2";
 @import "templates/realisation";
+@import "templates/novels";
+@import "../../../node_modules/fullpage.js/dist/fullpage.css";
+
+/* add fullpage scroll */
+
+#fp-nav {
+  ul {
+    li {
+      a.active {
+        span {
+          background-color: $gold-color;
+        }
+      }
+      a {
+        span {
+          width: 12px;
+          height: 12px;
+          background-color: #fff;
+          margin: -6px 0 0 -6px;
+        }
+      }
+    }
+  }
+}
+
+#fp-nav.black-nav {
+  ul {
+    li {
+      a.active {
+        span {
+          background-color: $gold-color;
+        }
+      }
+      a {
+        span {
+          width: 12px;
+          height: 12px;
+          background-color: $dark-grey;
+          margin: -6px 0 0 -6px;
+        }
+      }
+    }
+  }
+}
 
 /* BEGAN BANNER */
 
@@ -113,13 +157,13 @@
     position: absolute;
     bottom: 0;
     z-index: 30;
-    color: $wight-color;
+    color: $white-color;
     font-size: 36px;
     &:hover {
-      color: $wight-color;
+      color: $gold-color;
     }
     &:focus {
-      color: $wight-color;
+      color: $white-color;
     }
   }
 }
@@ -221,18 +265,27 @@
         @include title;
         color: $gold-color;
         text-transform: uppercase;
+        @include breakpoint (768px down) {
+          font-size: 20px
+        }
       }
       &:last-child {
         @include content;
         font-size: 16px;
         text-transform: uppercase;
-        color: $wight-color;
+        color: $white-color;
+        @include breakpoint (768px down) {
+          font-size: 10px
+        }
       }
     }
     strong {
       @include content;
-      color: $wight-color;
+      color: $white-color;
       font-size: 32px;
+      @include breakpoint (768px down) {
+        font-size: 20px
+      }
     }
   }
   .lo-video__wrapper {
@@ -243,7 +296,7 @@
       width: calc(100% - 120px);
     }
     @include breakpoint(1600px) {
-     width: 100%;
+      width: 100%;
     }
     .lo-video__overlay {
       background-size: cover;
@@ -257,7 +310,7 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%,-50%);
+        transform: translate(-50%, -50%);
         width: 60px;
         cursor: pointer;
       }
@@ -308,18 +361,27 @@
       &:first-child {
         @include title;
         color: $gold-color;
+        @include breakpoint (768px down) {
+          font-size: 20px
+        }
       }
       &:last-child {
         @include content;
         font-size: 16px;
         text-transform: uppercase;
         color: $dark-grey;
+        @include breakpoint (768px down) {
+          font-size: 10px
+        }
       }
     }
     strong {
       @include content;
       color: $dark-grey;
       font-size: 32px;
+      @include breakpoint (768px down) {
+        font-size: 20px
+      }
     }
   }
   &__post {
@@ -387,7 +449,7 @@
       @include content;
       color: $gold-color;
       strong {
-        color: $wight-color;
+        color: $white-color;
       }
     }
   }
@@ -431,7 +493,7 @@
     }
     &__link {
       @include content;
-      color: $wight-color;
+      color: $white-color;
     }
     @include breakpoint(768px down) {
       padding-top: 50px;
@@ -448,16 +510,33 @@
 
 .lo-novels {
   padding: 100px 0;
+  @include breakpoint(768px down) {
+    padding: 50px 0;
+  }
   &__post {
     padding-bottom: 40px;
+    @include breakpoint (768px down) {
+      padding-bottom: 20px;
+    }
+    &__title {
+      @include breakpoint (768px down) {
+        font-size: 12px;
+      }
+    }
   }
   &__title {
     @include title;
     color: $gold-color;
+    @include breakpoint (768px down) {
+      font-size: 20px;
+    }
     strong {
       @include content;
       color: $dark-grey;
       font-size: 32px;
+      @include breakpoint (768px down) {
+        font-size: 20px;
+      }
     }
   }
   &__content {
@@ -465,9 +544,10 @@
     display: flex;
     justify-content: space-between;
     .lo-novels__wrap--image {
+      margin: 0 15px;
       @include breakpoint(768px down) {
-        margin: 0 15px;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
+        margin: 0 10px;
       }
     }
     @include breakpoint(medium) {
@@ -483,9 +563,7 @@
       border: none;
     }
   }
-  @include breakpoint(768px down) {
-    padding: 50px 0;
-  }
 }
+
 
 /* AND NOVELS */

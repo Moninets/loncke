@@ -29,6 +29,15 @@
       width: 100px;
     }
   }
+  a {
+    &:hover {
+      .lo-hamburger {
+        &__inner {
+          background-color: $gold-color;
+        }
+      }
+    }
+  }
   .lo-hamburger {
     display: block;
     &__inner {
@@ -40,10 +49,11 @@
     }
     &__inner--middle {
       width: 15px;
-      margin: 5px auto 5px;
+      margin: 7px auto;
     }
   }
-  @include breakpoint(768px down){
+
+  @include breakpoint(768px down) {
     padding: 0 20px;
     background-color: $dark-grey;
   }
@@ -61,11 +71,14 @@
     &__link {
       color: $gold-color;
       padding-left: 15px;
-      @include  breakpoint (768px down) {
+      @include breakpoint (768px down) {
         padding-left: 35px;
       }
+      &:hover {
+        color: $dark-grey;
+      }
     }
-    @include  breakpoint (768px down) {
+    @include breakpoint (768px down) {
       padding: 0;
       margin: 0 auto;
     }
@@ -86,6 +99,9 @@
       text-transform: uppercase;
       font-weight: 700;
       display: inline-block;
+      &:hover {
+        color: $dark-grey;
+      }
     }
     .is-active > a {
       color: $dark-grey;
@@ -117,9 +133,12 @@
     }
   }
   .lo-socials__link {
+    color: $gold-color;
+    &:hover {
+      color: $dark-grey;
+    }
     i {
       font-size: 24px;
-      color: $gold-color;
       font-weight: 700;
     }
   }
@@ -198,5 +217,23 @@
         transition: .3s;
       }
     }
+  }
+}
+
+.lo-hamburger__active {
+  display: block;
+  .lo-hamburger__inner--first {
+    background-color: $gold-color;
+    transform: rotate(-45deg);
+    transition: .15s ease;
+  }
+  .lo-hamburger__inner--middle {
+    display: none;
+  }
+  .lo-hamburger__inner--last {
+    transform: rotate(45deg);
+    background-color: $gold-color;
+    transition: .15s ease;
+    margin-top: -2px;
   }
 }

@@ -32,10 +32,8 @@ get_header(); ?>
                             <img src="<?php the_field('history2_image_bottom'); ?>" alt="">
                         </a>
                     </div>
-
                 </div>
             </div>
-
             <a class="lo-history2__arrow--left" href="<?php echo esc_url(home_url('/')); ?>">
                 <img src="<?php echo get_template_directory_uri() ?>/dist/assets/images/arrow-white-left.png"
                      alt="Arrow">

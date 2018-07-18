@@ -1,0 +1,84 @@
+.lo-novels-template {
+  padding: 100px 0;
+  @include breakpoint(768px down) {
+    padding: 50px 0;
+  }
+  &__container {
+    position: relative;
+    padding-left: 100px;
+    position: relative;
+    @include breakpoint(768px down) {
+      padding-left: 15px;
+      @include breakpoint(1440px) {
+        padding-left: 15px;
+      }
+    }
+  }
+  &__post {
+    padding-bottom: 40px;
+    @include breakpoint (768px down) {
+      padding-bottom: 20px;
+    }
+
+  }
+  &__title {
+    @include title;
+    color: $gold-color;
+    @include breakpoint (768px down) {
+      font-size: 20px;
+    }
+    strong {
+      @include content;
+      color: $dark-grey;
+      font-size: 32px;
+      @include breakpoint (768px down) {
+        font-size: 20px;
+      }
+    }
+  }
+  &__content {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    @include breakpoint(medium) {
+      flex-wrap: nowrap;
+    }
+    .lo-novels-template__wrap--image {
+      margin: 0 10px;
+      padding-bottom: 15px;
+    }
+  }
+  .lo-novels-template__title {
+    color: $dark-grey;
+    @include breakpoint (768px down) {
+      font-size: 12px;
+    }
+  }
+  &__image {
+    border: 1px solid #282828;
+    max-height: 192px;
+  }
+  &__arrow--right {
+    img {
+      border: none;
+    }
+  }
+  .lo-novels-template__arrow--left {
+    position: absolute;
+    top: 90px;
+    left: 20px;
+    width: 120px;
+    @include breakpoint(768px down) {
+      display: none;
+    }
+    @include breakpoint(1440px) {
+      left: -80px;
+    }
+    @include breakpoint(1440px down) {
+      width: 60px;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}

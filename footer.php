@@ -16,7 +16,7 @@ if(is_page_template('page-templates/template-history.php')) {
 
 ?>
 
-<footer class="lo-footer <?php echo $footer_class; ?>">
+<footer class="lo-footer<?php echo $footer_class; ?> ">
     <div class="grid-container align-center">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="lo-footer__logo">
             <img src="<?php header_image(); ?>" alt="Logo">
@@ -61,6 +61,7 @@ if(is_page_template('page-templates/template-history.php')) {
     </div>
 </footer>
 
+<script src="https://alvarotrigo.com/fullPage/fullpage.js"></script>
 
 <?php wp_footer(); ?>
 </body>

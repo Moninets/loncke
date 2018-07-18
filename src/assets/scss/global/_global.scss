@@ -15,9 +15,6 @@ a, i {
   cursor: pointer;
   display: inline-block;
 }
-img {
-  width: 100%;
-}
 
 @mixin title {
   font-family: 'Raleway', sans-serif;
@@ -33,10 +30,15 @@ img {
 .style-button {
   @include title;
   background-color: $gold-color;
-  color: $wight-color;
+  color: $white-color;
   padding: 10px;
+  border: 1px solid #af935b;
   &:hover {
-    color: $wight-color;
+    color: $gold-color;
+    background-color: $white-color;
+    i {
+      color: $gold-color;
+    }
   }
   i {
     padding-left: 25px;
