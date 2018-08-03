@@ -15,7 +15,7 @@ get_header(); ?>
                 <a href="<?php echo esc_url(home_url('/')); ?>">
                     <img class="lo-banner__logo" src="<?php header_image(); ?>" alt="Logo">
                 </a>
-                <a href="#lo-scroll" class="lo-banner__scroll">
+                <a href="#lo-history" class="lo-banner__scroll">
                     <i class="fa fa-angle-down" aria-hidden="true"></i>
                 </a>
             </section>
@@ -24,12 +24,14 @@ get_header(); ?>
 
         <!-- BEGAN HISTORY -->
         <div class="section" id="section1">
-            <section  class="lo-history align-middle">
+            <section class="lo-history align-middle" id="lo-history">
                 <div class="grid-container">
                     <div class="grid-x grid-padding-x lo-history__content">
                         <div class="cell medium-6 lo-content__left ">
                             <h3 class="lo-history__title"><?php the_field('history_title'); ?></h3>
-                            <img src="<?php the_field('history_image'); ?>" alt="Carpenter">
+                            <a href="<?php the_field('history_image'); ?>" data-fancybox >
+                                <img src="<?php the_field('history_image'); ?>" alt="Carpenter">
+                            </a>
                         </div>
                         <div class="cell medium-6 lo-content__right">
                             <div class="lo-history__text">
@@ -94,7 +96,7 @@ get_header(); ?>
                     );
                     $posts = new WP_Query($args);
                     ?>
-
+                    <?php $j = 1; ?>
                     <?php if ($posts->have_posts()): while ($posts->have_posts()) : $posts->the_post(); ?>
                         <article class="lo-realisations__post">
                             <?php $images = get_field('gallery'); ?>
@@ -103,8 +105,9 @@ get_header(); ?>
                                     <?php $i = 1; ?>
                                     <?php foreach ($images as $image): ?>
                                         <div class="cell medium-6 large-3 lo-realisations__gallery">
-                                            <a href="<?php echo $image['url']; ?>"
-                                               style="background-image: url(<?php echo $image['url']; ?>);">
+                                            <a href="<?php echo $image['url']; ?>" rel="gallery"
+                                               data-fancybox="gallery-real-<?php echo $j ?>"
+                                               style="background-image: url(<?php echo $image['sizes'] ['realisations-small']; ?>);">
                                             </a>
                                         </div>
                                         <?php
@@ -114,7 +117,7 @@ get_header(); ?>
                                         }
                                         ?>
                                     <?php endforeach; ?>
-                                    <a href="<?php the_field('history_link'); ?>"
+                                    <a href="<?php the_permalink(); ?>"
                                        class="lo-realisation__arrow lo-arrow__small">
                                         <img src="<?php the_field('section_arrow', 'options'); ?>" alt="Arrow">
                                     </a>
@@ -126,7 +129,7 @@ get_header(); ?>
                             <?php endif; ?>
 
                         </article>
-                    <?php endwhile; endif;
+                        <?php $j++; endwhile; endif;
                     wp_reset_postdata(); ?>
                     <a class="lo-realisations__button style-button" href="<?php the_field('realisations_link'); ?>"
                        class="realisations_link">
@@ -148,14 +151,14 @@ get_header(); ?>
                     </h3>
                     <div class="lo-contact__map">
                         <?php
-                        if (have_rows('map_locations','options')):
+                        if (have_rows('map_locations', 'options')):
                             ?>
                             <div id="map" class="acf-map">
                                 <?php while (have_rows('map_locations', 'options')) : the_row(); ?>
-                                <?php $location = get_sub_field('map_location'); ?>
-                                <div class="marker" data-lat="<?php echo $location['lat']; ?>"
-                                     data-lng="<?php echo $location['lng']; ?>">
-                                </div>
+                                    <?php $location = get_sub_field('map_location'); ?>
+                                    <div class="marker" data-lat="<?php echo $location['lat']; ?>"
+                                         data-lng="<?php echo $location['lng']; ?>">
+                                    </div>
                                 <?php endwhile; ?>
                             </div>
                         <?php endif; ?>
@@ -210,8 +213,9 @@ get_header(); ?>
                     );
                     $posts = new WP_Query($args);
                     ?>
-
+                    <?php $j = 1; ?>
                     <?php if ($posts->have_posts()): while ($posts->have_posts()) : $posts->the_post(); ?>
+
                         <article class="lo-novels__post">
                             <?php $images = get_field('gallery'); ?>
                             <?php if ($images): ?>
@@ -219,7 +223,8 @@ get_header(); ?>
                                     <?php $i = 1; ?>
                                     <?php foreach ($images as $image): ?>
                                         <div class="lo-novels__wrap--image">
-                                            <a href="<?php echo $image['url']; ?>">
+                                            <a href="<?php echo $image['url']; ?>" rel="gallery"
+                                               data-fancybox="gallery-<?php echo $j ?>">
                                                 <img class="lo-novels__image" src="<?php echo $image['url']; ?>"
                                                      alt="<?php echo $image['alt']; ?>">
                                             </a>
@@ -231,7 +236,7 @@ get_header(); ?>
                                         }
                                         ?>
                                     <?php endforeach; ?>
-                                    <a href="<?php the_field('history_link'); ?>"
+                                    <a href="<?php the_permalink(); ?>"
                                        class="lo-novels__arrow lo-arrow__small">
                                         <img src="<?php the_field('section_arrow', 'options'); ?>" alt="Arrow">
                                     </a>
@@ -241,7 +246,7 @@ get_header(); ?>
                                 </h5>
                             <?php endif; ?>
                         </article>
-                    <?php endwhile; endif;
+                        <?php $j++; endwhile; endif;
                     wp_reset_postdata(); ?>
 
 

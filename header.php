@@ -15,7 +15,7 @@
     <meta charset="<?php bloginfo('charset'); ?>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600" rel="stylesheet">
-<!--    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.css"/>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -26,7 +26,7 @@
             <a href="<?php echo esc_url(home_url('/')); ?>" class="lo-header__logo">
                 <img src="<?php header_image(); ?>" alt="Logo">
             </a>
-            <a class="lo-hamburger" href="#" data-toggle="offCanvasNestedOverlap">
+            <a class="lo-hamburger" id="hamburger" href="#" data-toggle="offCanvasNestedOverlap">
                 <span class="lo-hamburger__inner lo-hamburger__inner--first"></span>
                 <span class="lo-hamburger__inner lo-hamburger__inner--middle"></span>
                 <span class="lo-hamburger__inner lo-hamburger__inner--last"></span>

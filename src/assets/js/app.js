@@ -8,8 +8,84 @@ import Foundation from 'foundation-sites';
 // If you want to pick and choose which modules to include, comment out the above and uncomment
 // the line below
 //import './lib/foundation-explicit-pieces';
+// import './lib/jquery.overlaps.js';
 
 $(document).foundation();
+
+// global var
+// var map = null;
+
+// global var
+var map = null;
+
+$(document).ready(function(){
+
+    $('.acf-map').each(function(){
+
+        // create map
+        map = new_map( $(this) );
+
+    });
+
+});
+
+$(window).on('load', function () {
+
+    $('.lo-video__button').on('click', function () {
+        $(this)
+            .closest('.lo-video__wrapper')
+            .find('.lo-video')[0]
+            .play();
+
+        $(this)
+            .parent()
+            .remove()
+    });
+
+    $(window).on('scroll', function() {
+        if (is_colliding($('#hamburger'), $('#section-1'))) {
+            console.log('overlaps')
+        }
+    });
+
+    $('#fullpage').fullpage({
+        anchors: ['firstPage','secondPage', 'thirdPage', 'fourthPage', 'fifthPage'],
+        navigation: true,
+        autoScrolling: false,
+        fitToSection: false,
+        normalScrollElements: '#section1',
+        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+        onLeave: function(origin, destination, direction){
+            // var leavingSection = this
+            // var windowHeight = $(window).height();
+            // console.log(origin);
+
+            //after leaving section 2
+            if((origin.index) % 2 == 0){
+                $('#hamburger').addClass('gold');
+                $('#fp-nav').addClass('black-nav');
+            } else {
+                $('#hamburger').removeClass('gold');
+                $('#fp-nav').removeClass('black-nav');
+            }
+        }
+    });
+
+    $('.lo-hamburger').click(function () {
+        $(this).toggleClass('lo-hamburger__active');
+    });
+
+    $('.js-off-canvas-overlay').on('click', function () {
+        $('.lo-hamburger').removeClass('lo-hamburger__active');
+    });
+
+    $(function() {
+        $('a[href*=#lo-history]').on('click', function(e) {
+            e.preventDefault();
+            $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+        });
+    });
+});
 
 /*
  *  new_map
@@ -24,7 +100,7 @@ $(document).foundation();
  *  @return	n/a
  */
 
-function new_map($el) {
+function new_map( $el ) {
 
     // var
     var $markers = $el.find('.marker');
@@ -32,14 +108,192 @@ function new_map($el) {
 
     // vars
     var args = {
-        zoom: 16,
-        center: new google.maps.LatLng(0, 0),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
+        zoom		: 14,
+        center		: new google.maps.LatLng(0, 0),
+        mapTypeId	: google.maps.MapTypeId.ROADMAP,
+        scrollwheel: false,
+        disableDefaultUI: true,
+        styles: [
+            {
+                "featureType": "water",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#e9e9e9"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            },
+            {
+                "featureType": "landscape",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 17
+                    }
+                ]
+            },
+            {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 29
+                    },
+                    {
+                        "weight": 0.2
+                    }
+                ]
+            },
+            {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 18
+                    }
+                ]
+            },
+            {
+                "featureType": "road.local",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f5f5f5"
+                    },
+                    {
+                        "lightness": 21
+                    }
+                ]
+            },
+            {
+                "featureType": "poi.park",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#dedede"
+                    },
+                    {
+                        "lightness": 21
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.stroke",
+                "stylers": [
+                    {
+                        "visibility": "on"
+                    },
+                    {
+                        "color": "#ffffff"
+                    },
+                    {
+                        "lightness": 16
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.text.fill",
+                "stylers": [
+                    {
+                        "saturation": 36
+                    },
+                    {
+                        "color": "#333333"
+                    },
+                    {
+                        "lightness": 40
+                    }
+                ]
+            },
+            {
+                "elementType": "labels.icon",
+                "stylers": [
+                    {
+                        "visibility": "off"
+                    }
+                ]
+            },
+            {
+                "featureType": "transit",
+                "elementType": "geometry",
+                "stylers": [
+                    {
+                        "color": "#f2f2f2"
+                    },
+                    {
+                        "lightness": 19
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.fill",
+                "stylers": [
+                    {
+                        "color": "#fefefe"
+                    },
+                    {
+                        "lightness": 20
+                    }
+                ]
+            },
+            {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [
+                    {
+                        "color": "#fefefe"
+                    },
+                    {
+                        "lightness": 17
+                    },
+                    {
+                        "weight": 1.2
+                    }
+                ]
+            }
+        ],
     };
 
 
     // create map
-    var map = new google.maps.Map($el[0], args);
+    var map = new google.maps.Map( $el[0], args);
 
 
     // add a markers reference
@@ -47,16 +301,15 @@ function new_map($el) {
 
 
     // add markers
-    $markers.each(function () {
+    $markers.each(function(){
 
-        add_marker($(this), map);
+        add_marker( $(this), map );
 
     });
 
 
-
     // center map
-    center_map(map);
+    center_map( map );
 
 
     // return
@@ -78,51 +331,37 @@ function new_map($el) {
  *  @return	n/a
  */
 
-function addMarkers($markers, map) {
-    $markers.each(function () {
-        const lat = $(this).data('lat');
-        const lng = $(this).data('lng');
-        let marker = new google.maps.Marker({
-            position: { lat: lat, lng: lng },
-            map: map,
-            // icon: {
-                // url: $(this).data('icon') ? $(this).data('icon') : 'https://paradiced.bitbucket.io/dist/assets/img/single-marker.svg',
-                // labelOrigin: new google.maps.Point(40, 30)
-            // },
-        });
-    });
-}
+function add_marker( $marker, map ) {
 
-// function add_marker($marker, map) {
-//
-//     // var
-//     var latlng = new google.maps.LatLng($marker.attr('data-lat'), $marker.attr('data-lng'));
-//
-//     // create marker
-//     var marker = new google.maps.Marker({
-//         position: latlng,
-//         map: map
-//     });
-//
-//     // add to array
-//     map.markers.push(marker);
-//
-//     // if marker contains HTML, add it to an infoWindow
-//     if ($marker.html()) {
-//         // create info window
-//         var infowindow = new google.maps.InfoWindow({
-//             content: $marker.html()
-//         });
-//
-//         // show info window when marker is clicked
-//         google.maps.event.addListener(marker, 'click', function () {
-//
-//             infowindow.open(map, marker);
-//
-//         });
-//     }
-//
-// }
+    // var
+    var latlng = new google.maps.LatLng( $marker.attr('data-lat'), $marker.attr('data-lng') );
+
+    // create marker
+    var marker = new google.maps.Marker({
+        position	: latlng,
+        map			: map
+    });
+
+    // add to array
+    map.markers.push( marker );
+
+    // if marker contains HTML, add it to an infoWindow
+    if( $marker.html() )
+    {
+        // create info window
+        var infowindow = new google.maps.InfoWindow({
+            content		: $marker.html()
+        });
+
+        // show info window when marker is clicked
+        google.maps.event.addListener(marker, 'click', function() {
+
+            infowindow.open( map, marker );
+
+        });
+    }
+
+}
 
 /*
  *  center_map
@@ -137,93 +376,68 @@ function addMarkers($markers, map) {
  *  @return	n/a
  */
 
-function center_map(map) {
+function center_map( map ) {
 
     // vars
     var bounds = new google.maps.LatLngBounds();
 
     // loop through all markers and create bounds
-    $.each(map.markers, function (i, marker) {
+    $.each( map.markers, function( i, marker ){
 
-        var latlng = new google.maps.LatLng(marker.position.lat(), marker.position.lng());
+        var latlng = new google.maps.LatLng( marker.position.lat(), marker.position.lng() );
 
-        bounds.extend(latlng);
+        bounds.extend( latlng );
 
     });
 
     // only 1 marker?
-    if (map.markers.length == 1) {
+    if( map.markers.length == 1 )
+    {
         // set center of map
-        map.setCenter(bounds.getCenter());
-        map.setZoom(16);
+        map.setCenter( bounds.getCenter() );
+        map.setZoom( 16 );
     }
-    else {
+    else
+    {
         // fit to bounds
-        map.fitBounds(bounds);
+        map.fitBounds( bounds );
     }
 
 }
 
-/*
- *  document ready
+$('[data-fancybox="gallery"]').fancybox({
+
+});
+
+/**
+ * Detects if two elements are colliding
  *
- *  This function will render each map when the document is ready (page has loaded)
+ * Credit goes to BC on Stack Overflow, cleaned up a little bit
  *
- *  @type	function
- *  @date	8/11/2013
- *  @since	5.0.0
- *
- *  @param	n/a
- *  @return	n/a
+ * @link http://stackoverflow.com/questions/5419134/how-to-detect-if-two-divs-touch-with-jquery
+ * @param $div1
+ * @param $div2
+ * @returns {boolean}
  */
-// global var
-var map = null;
+var is_colliding = function( $div1, $div2 ) {
+    // Div 1 data
+    var d1_offset             = $div1.offset();
+    var d1_height             = $div1.outerHeight( true );
+    var d1_width              = $div1.outerWidth( true );
+    var d1_distance_from_top  = d1_offset.top + d1_height;
+    var d1_distance_from_left = d1_offset.left + d1_width;
 
-$(window).on('load', function () {
+    // Div 2 data
+    var d2_offset             = $div2.offset();
+    var d2_height             = $div2.outerHeight( true );
+    var d2_width              = $div2.outerWidth( true );
+    var d2_distance_from_top  = d2_offset.top + d2_height;
+    var d2_distance_from_left = d2_offset.left + d2_width;
 
-    $('.lo-video__button').on('click', function () {
-        $(this)
-            .closest('.lo-video__wrapper')
-            .find('.lo-video')[0]
-            .play();
+    var not_colliding = ( d1_distance_from_top < d2_offset.top || d1_offset.top > d2_distance_from_top || d1_distance_from_left < d2_offset.left || d1_offset.left > d2_distance_from_left );
 
-        $(this)
-            .parent()
-            .remove()
-    });
+    // Return whether it IS colliding
+    return ! not_colliding;
+};
 
-    $('.acf-map').each(function () {
-
-        // create map
-        map = new_map($(this));
-
-    });
-
-
-    $('#fullpage').fullpage({
-        anchors: ['firstPage','secondPage', 'thirdPage', 'fourthPage', 'fifthPage'],
-        navigation: true,
-        autoScrolling: false,
-        // fitToSection: false,
-        // navigationPosition: 'right',
-        normalScrollElements: '#section5',
-        licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
-        onLeave: function(origin, destination, direction){
-            var leavingSection = this;
-
-            //after leaving section 2
-            if((origin.index) % 2 == 0){
-                $('#fp-nav').addClass('black-nav');
-            } else {
-                $('#fp-nav').removeClass('black-nav');
-            }
-        }
-    });
-});
-
-$(document).ready(function () {
-    $('.lo-hamburger').click(function () {
-        $(this).toggleClass('lo-hamburger__active');
-    });
-});
 

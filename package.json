@@ -25,6 +25,7 @@
     "responsive"
   ],
   "dependencies": {
+    "@fancyapps/fancybox": "^3.3.5",
     "foundation-sites": "6.4.3",
     "fullpage.js": "^3.0.1",
     "jquery": "~3.0.0",

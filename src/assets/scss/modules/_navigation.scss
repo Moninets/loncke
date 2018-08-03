@@ -51,6 +51,11 @@
       width: 15px;
       margin: 7px auto;
     }
+    &.gold {
+      .lo-hamburger__inner {
+        background-color: #af935b;
+      }
+    }
   }
 
   @include breakpoint(768px down) {

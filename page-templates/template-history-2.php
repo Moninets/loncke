@@ -25,10 +25,10 @@ get_header(); ?>
                 </div>
                 <div class="cell medium-6">
                     <div class="lo-history2__image">
-                        <a href="#">
+                        <a href="<?php the_field('history2_image_top'); ?>" data-fancybox>
                             <img src="<?php the_field('history2_image_top'); ?>" alt="">
                         </a>
-                        <a href="#">
+                        <a href="<?php the_field('history2_image_bottom'); ?>" data-fancybox>
                             <img src="<?php the_field('history2_image_bottom'); ?>" alt="">
                         </a>
                     </div>

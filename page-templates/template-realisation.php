@@ -18,6 +18,7 @@ get_header(); ?>
             $posts = new WP_Query($args);
             ?>
 
+            <?php $j = 1; ?>
             <?php if ($posts->have_posts()): while ($posts->have_posts()) : $posts->the_post(); ?>
                 <article class="lo-realisations-template__post">
                     <?php $images = get_field('gallery'); ?>
@@ -26,8 +27,8 @@ get_header(); ?>
                             <?php $i = 1; ?>
                             <?php foreach ($images as $image): ?>
                                 <div class="cell medium-6 large-3 lo-realisations-template__gallery">
-                                    <a href="<?php echo $image['url']; ?>"
-                                       style="background-image: url(<?php echo $image['url']; ?>);">
+                                    <a href="<?php echo $image['url']; ?>" rel="gallery" data-fancybox="gallery-realisations-<?php echo $j ?>"
+                                       style="background-image: url(<?php echo $image['sizes']['realisations-small']; ?>);">
                                     </a>
                                 </div>
                                 <?php
@@ -37,7 +38,8 @@ get_header(); ?>
                                 }
                                 ?>
                             <?php endforeach; ?>
-                            <a href="<?php the_field('history_link'); ?>" class="lo-realisations-template__arrow lo-arrow__small">
+                            <a href="<?php the_permalink(); ?>"
+                               class="lo-realisations-template__arrow lo-arrow__small">
                                 <img src="<?php the_field('section_arrow', 'options'); ?>" alt="Arrow">
                             </a>
                         </div>
@@ -47,7 +49,7 @@ get_header(); ?>
                         </h5>
                     <?php endif; ?>
                 </article>
-            <?php endwhile; endif;
+            <?php $j++; endwhile; endif;
             wp_reset_postdata(); ?>
             <a class="lo-realisations-template__arrow--left" href="<?php echo esc_url(home_url('/')); ?>">
                 <img src="<?php echo get_template_directory_uri() ?>/dist/assets/images/arrow-white-left.png" alt="Arrow">

@@ -5,7 +5,8 @@ Template Name: Template History
 get_header(); ?>
 
 
-    <section class=" lo-history lo-history--single" style="background-color: <?php the_field('history_color_main'); ?>;">
+    <section class=" lo-history lo-history--single"
+             style="background-color: <?php the_field('history_color_main'); ?>;">
         <div class="grid-container lo-history__container">
             <div class="grid-x grid-margin-x ">
                 <div class="cell">
@@ -24,7 +25,9 @@ get_header(); ?>
                     </div>
                 </div>
                 <div class="cell medium-6">
-                    <img class="lo-history__image" src="<?php echo get_the_post_thumbnail_url() ?>" alt="Stairs">
+                    <a class="lo-history__image" href="<?php echo get_the_post_thumbnail_url() ?>" data-fancybox>
+                        <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="Stairs">
+                    </a>
                 </div>
             </div>
             <div class="grid-x grid-margin-x">
@@ -38,7 +41,6 @@ get_header(); ?>
                     );
                     $posts = new WP_Query($args);
                     ?>
-
                     <?php if ($posts->have_posts()): while ($posts->have_posts()) : $posts->the_post(); ?>
                         <article class="lo-history__post">
                             <?php $images = get_field('gallery'); ?>
@@ -47,7 +49,7 @@ get_header(); ?>
                                     <?php $i = 1; ?>
                                     <?php foreach ($images as $image): ?>
                                         <div class="cell medium-6 large-3 lo-history__post--image">
-                                            <a href="<?php echo $image['url']; ?>"
+                                            <a href="<?php echo $image['url']; ?>" rel="gallery" data-fancybox="gallery"
                                                style="background-image: url(<?php echo $image['url']; ?>);">
                                             </a>
                                         </div>

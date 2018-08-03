@@ -16,7 +16,7 @@ if(is_page_template('page-templates/template-history.php')) {
 
 ?>
 
-<footer class="lo-footer<?php echo $footer_class; ?> ">
+<footer class="lo-footer <?php echo $footer_class; ?> ">
     <div class="grid-container align-center">
         <a href="<?php echo esc_url(home_url('/')); ?>" class="lo-footer__logo">
             <img src="<?php header_image(); ?>" alt="Logo">
@@ -25,7 +25,7 @@ if(is_page_template('page-templates/template-history.php')) {
         <ul class="lo-footer__socials--list">
             <?php while (have_rows('socials', 'options')) : the_row(); ?>
                 <li class="lo-footer__socials--item">
-                    <a href="<?php the_sub_field('socials_link'); ?>" class="lo-footer__socials--link">
+                    <a href="<?php the_sub_field('socials_link'); ?>" target="_blank" class="lo-footer__socials--link">
                         <i class="fa <?php the_sub_field('socials_icon', 'options'); ?>"></i>
                     </a>
                 </li>
@@ -39,17 +39,17 @@ if(is_page_template('page-templates/template-history.php')) {
                 </a>
             </li>
             <li class="lo-bottom__item">
-                <a href="<?php the_field('footer_privacy_link', 'options'); ?>" class="lo-bottom__link">
+                <a href="<?php the_field('footer_privacy_link', 'options'); ?>" target="_blank" class="lo-bottom__link">
                     <?php the_field('footer_privacy_text', 'options'); ?>
                 </a>
             </li>
             <li class="lo-bottom__item">
-                <a href="<?php the_field('footer_disclaimer_link', 'options'); ?>" class="lo-bottom__link">
+                <a href="<?php the_field('footer_disclaimer_link', 'options'); ?>" target="_blank" class="lo-bottom__link">
                     <?php the_field('footer_disclaimer_text', 'options'); ?>
                 </a>
             </li>
             <li class="lo-bottom__item">
-                <a href="<?php the_field('footer_website_link', 'options'); ?>" class="lo-bottom__link">
+                <a href="<?php the_field('footer_website_link', 'options'); ?>" target="_blank" class="lo-bottom__link">
                     <?php the_field('footer_website_text', 'options'); ?>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 99.9 99.9">
                         <path class="st0"
@@ -62,6 +62,7 @@ if(is_page_template('page-templates/template-history.php')) {
 </footer>
 
 <script src="https://alvarotrigo.com/fullPage/fullpage.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
 <?php wp_footer(); ?>
 </body>

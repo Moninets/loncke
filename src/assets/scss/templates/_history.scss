@@ -7,9 +7,9 @@
     position: relative;
     @include breakpoint(768px down) {
       padding-left: 15px;
-    @include breakpoint(1440px) {
-      padding-left: 15px;
-    }
+      @include breakpoint(1440px) {
+        padding-left: 15px;
+      }
       .cell {
         &:nth-child(2) {
           order: 3
@@ -38,13 +38,19 @@
   }
 
   &__image {
-    width: 100%;
-    filter:grayscale(100%);
+    display: block;
+    filter: grayscale(100%);
+    &:hover {
+      filter: grayscale(0);
+    }
     @include breakpoint (768px down) {
-    margin-bottom: 20px;
-  }
+      margin-bottom: 20px;
+    }
     @include breakpoint (large) {
       padding-left: 40px;
+    }
+    img {
+      width: 100%;
     }
   }
   &__post {

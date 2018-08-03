@@ -82,3 +82,7 @@ function so_acf_init()
 
 add_action('acf/init', 'so_acf_init');
 
+add_theme_support( 'post-thumbnails' );
+
+add_image_size( 'realisations-small', 258, 140, true );
+
