@@ -40,6 +40,10 @@ a, i {
       color: $gold-color;
     }
   }
+  &:focus {
+    color: $gold-color;
+    background-color: $white-color;
+  }
   i {
     padding-left: 25px;
   }
