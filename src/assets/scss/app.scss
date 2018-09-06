@@ -460,6 +460,9 @@
   .lo-location {
     text-align: center;
     padding-top: 100px;
+    @include breakpoint(768px down) {
+      padding-top: 50px;
+    }
     &__title {
       @include title;
       color: $gold-color;
@@ -494,9 +497,9 @@
     &__link {
       @include content;
       color: $white-color;
-    }
-    @include breakpoint(768px down) {
-      padding-top: 50px;
+      &:hover {
+        color: #af935b;
+      }
     }
   }
   @include breakpoint(768px down) {
@@ -564,6 +567,5 @@
     }
   }
 }
-
 
 /* AND NOVELS */

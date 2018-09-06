@@ -24,16 +24,16 @@ register_nav_menus(
 if ( ! function_exists( 'foundationpress_top_bar_r' ) ) {
 	function foundationpress_top_bar_r() {
 		wp_nav_menu(
-			array(
-				'container'      => false,
-				'menu_class'     => 'dropdown menu',
-				'items_wrap'     => '<ul id="%1$s" class="%2$s desktop-menu" data-dropdown-menu>%3$s</ul>',
-				'theme_location' => 'top-bar-r',
-				'depth'          => 3,
-				'fallback_cb'    => false,
-				'walker'         => new Foundationpress_Top_Bar_Walker(),
-			)
-		);
+            array(
+                'container'      => false,
+                'menu_class'     => 'dropdown menu',
+                'items_wrap'     => '<ul id="%1$s" class="%2$s desktop-menu" data-dropdown-menu>%3$s</ul>',
+                'theme_location' => 'top-bar-r',
+                'depth'          => 3,
+                'fallback_cb'    => false,
+                'walker'         => new Foundationpress_Top_Bar_Walker(),
+            )
+        );
 	}
 }
 

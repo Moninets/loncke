@@ -32,7 +32,6 @@
                 <span class="lo-hamburger__inner lo-hamburger__inner--last"></span>
             </a>
         </div>
-        </button>
     </div>
 
 </header>

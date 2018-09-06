@@ -259,6 +259,12 @@ get_header(); ?>
             </section>
         </div>
         <!-- AND NOVELS -->
+        <div id="lo-slider">
+            <div class="le-slide"></div>
+            <div class="le-slide"></div>
+            <div class="le-slide"></div>
+            <div class="le-slide"></div>
+        </div>  
 
     </main>
 <?php get_footer();

@@ -440,4 +440,3 @@ var is_colliding = function( $div1, $div2 ) {
     return ! not_colliding;
 };
 
-

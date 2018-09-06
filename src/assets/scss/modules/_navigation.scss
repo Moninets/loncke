@@ -21,7 +21,7 @@
 
 .lo-header {
   position: fixed;
-  z-index: 100;
+  z-index: 1000;
   width: 100%;
   padding: 20px 40px;
   &__logo {
@@ -64,12 +64,14 @@
   }
 }
 
+.off-canvas.is-transition-overlap {
+  z-index: 101;
+}
+
 .off-canvas {
   background-color: #fff;
   box-shadow: none;
-  .is-transition-overlap {
-    z-index: 40;
-  }
+  z-index: 101;
   .lo-callout {
     border: none;
     padding-left: 40px;

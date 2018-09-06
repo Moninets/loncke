@@ -64,6 +64,7 @@ if(is_page_template('page-templates/template-history.php')) {
 <script src="https://alvarotrigo.com/fullPage/fullpage.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
 
+
 <?php wp_footer(); ?>
 </body>
 </html>
